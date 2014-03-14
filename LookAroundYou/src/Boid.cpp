@@ -30,6 +30,15 @@ void Boid::update(float deltaTime)
 {
     mPerlinIdx.x += (mSpeed / range);
     mPos = mPerlin->dfBm(mPerlinIdx) * Boid::range;
+    
+    if(mSound->is3d()) {
+        
+        Vec3f velocity = (mPos - mPosLast)/deltaTime;
+        app::console() << mPos << endl;
+        mSound->set3DAttributes(mPos, velocity);
+        mSound->set3DFalloff(0, mRadius*Boid::radiusMultiplier);
+        mPosLast = mPos;
+    }
 }
 
 void Boid::drawWidget(float r)

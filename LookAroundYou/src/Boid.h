@@ -30,6 +30,7 @@ protected:
     Color8u mColor;
     double mBorn;
     Vec3f mPos;
+    Vec3f mPosLast;
     float mSpeed;
     float mRadius;
     Vec3f mPerlinIdx;

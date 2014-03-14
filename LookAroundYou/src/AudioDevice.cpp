@@ -71,19 +71,25 @@ void AudioDevice::setup(int deviceID, int nChannels)
 	}
 	
 	FMODErrorCheck(mSystem->getMasterChannelGroup(&mMasterChannelGroup));
+    
+    FMOD_VECTOR up = { 0.0f, 1.0f, 0.0f };
+    FMOD_VECTOR forward = { 0.0f, 0.0f, 1.0f };
+    FMOD_VECTOR listenerpos = { 0.0f, 0.0f, 0.0f };
+    FMOD_VECTOR vel = {0, 0, 0};
+    FMODErrorCheck(mSystem->set3DListenerAttributes(0, &listenerpos, &vel, &forward, &up));
 }
 
 
 
-string AudioDevice::registerSound(ci::DataSourceRef dataSource, bool looping, bool asStream)
+string AudioDevice::registerSound(ci::DataSourceRef dataSource, bool looping, bool is3d, bool asStream)
 {
 	ci::fs::path relativePath = dataSource->getFilePath();
 	if( relativePath.empty() )
 		relativePath = ci::fs::path( dataSource->getFilePathHint() );
-	return registerSound(relativePath, looping, asStream);
+	return registerSound(relativePath, is3d, looping, asStream);
 }
 
-string AudioDevice::registerSound(ci::fs::path pathToSound, bool looping, bool asStream)
+string AudioDevice::registerSound(ci::fs::path pathToSound, bool looping, bool is3d, bool asStream)
 {
 	if ( !boost::filesystem::exists( pathToSound ) ) {
 		app::console() << "[NOTICE] " << pathToSound << " doesn't exist" << endl;
@@ -106,12 +112,11 @@ string AudioDevice::registerSound(ci::fs::path pathToSound, bool looping, bool a
 		FMODErrorCheck( mSystem->createSound( pathToSound.string().c_str(), FMOD_DEFAULT, NULL, &mSounds[name]) );
 	}
 	
-	if( looping ) {
-		FMODErrorCheck( mSounds.at(name)->setMode( FMOD_LOOP_NORMAL ) );
-	} else {
-		FMODErrorCheck( mSounds.at(name)->setMode( FMOD_LOOP_OFF ) );
-	}
-	
+    FMOD_MODE mode;
+    mode = is3d ? FMOD_3D|FMOD_3D_LINEARSQUAREROLLOFF : FMOD_2D;
+	mode |= looping ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF;
+    FMODErrorCheck( mSounds.at(name)->setMode( mode ) );
+
 	return name;
 }
 

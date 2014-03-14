@@ -31,8 +31,8 @@ SoundInstance::SoundInstance(AudioDevice* device, FMOD::Sound* sound, float volu
 	// ie: without this, echos will be cut off if sounds don't already have silence at the end.
 	FMODErrorCheck(mChannel->setDelay(FMOD_DELAYTYPE_END_MS, 1000, 1000));
 #endif
-	FMODErrorCheck(mChannel->setMode(FMOD_2D));
-	setVolume( volume );
+    
+	//setVolume( volume );
 	
 	FMODErrorCheck(sound->getLength(&length, FMOD_TIMEUNIT_MS));
 	FMODErrorCheck(sound->getFormat(&type, &format, &nchannels, &bits));
@@ -111,7 +111,7 @@ void SoundInstance::setFrequency(float freq)
 	}
 }
 
-unsigned int SoundInstance::getPositionMs()
+unsigned int SoundInstance::getPlayheadMs()
 {
 	unsigned int position_ms;
 	if(mChannel->getPosition(&position_ms, FMOD_TIMEUNIT_MS) == FMOD_OK) {
@@ -133,7 +133,19 @@ float SoundInstance::getAudibility()
 	}
 }
 
+void SoundInstance::set3DAttributes(ci::Vec3f pos, ci::Vec3f vel) {
+    FMOD_VECTOR _pos = toFMOD(pos);
+    FMOD_VECTOR _vel = toFMOD(vel);
+    if(mChannel->set3DAttributes(&_pos, &_vel)!=FMOD_OK) {
+        INVALID_CHANNEL_WARNING("set 3D attributes of");
+    }
+}
 
+void SoundInstance::set3DFalloff(float min, float max) {
+    if(mChannel->set3DMinMaxDistance(min, max) != FMOD_OK) {
+        INVALID_CHANNEL_WARNING("set 3D falloff of");
+    }
+}
 
 #pragma mark DSP stuff
 #ifdef USE_DSP_EFFECTS

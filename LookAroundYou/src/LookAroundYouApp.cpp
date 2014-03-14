@@ -35,8 +35,8 @@ private:
 	Vec2f mMousePos;
     
     Perlin* mPerlin;
-    vector<BoidRef> boids;
-    AudioDeviceRef audioDevice;
+    vector<BoidRef> mBoids;
+    AudioDeviceRef mAudioDevice;
     SoundInstanceRef music;
     vector<string> fxnames;
 };
@@ -65,24 +65,23 @@ void LookAroundYouApp::setup()
     mParams.addParam("Range", &Boid::range, "min=10.0 max=100 step=1.0");
     
     AudioDevice::printDeviceMap();
-    audioDevice = make_shared<AudioDevice>();
-    audioDevice->setup(0);
-    console() << "Channels Available: " << audioDevice->getNumRemainingChannels();
+    mAudioDevice = make_shared<AudioDevice>();
+    mAudioDevice->setup(0);
+    console() << "Channels Available: " << mAudioDevice->getNumRemainingChannels() << endl;
     
     DataSourceRef data = loadAsset("music/Music For Airports - 1 1.mp3");
-    string musicName = audioDevice->registerSound(data, true, true);
-    music = audioDevice->getSoundInstance(musicName, 1.0);
+    string musicName = mAudioDevice->registerSound(data, true, false, true);
+    music = mAudioDevice->getSoundInstance(musicName, 1.0);
     music->play();
     
-    
-    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/blue.aif"), true));
-    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/fliup.aif"), true));
-    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/green.aif"), true));
-    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/howl.wav"), true));
-    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/orange.aif"), true));
-    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/red.aif"), true));
-    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/white.aif"), true));
-    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/yellow.aif"), true));
+    fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/blue.aif"), true, true));
+    fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/fliup.aif"), true, true));
+    fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/green.aif"), true, true));
+    fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/howl.wav"), true, true));
+    fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/orange.aif"), true, true));
+    fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/red.aif"), true, true));
+    fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/white.aif"), true, true));
+    fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/yellow.aif"), true, true));
     
     
     mPerlin = new Perlin();
@@ -90,9 +89,9 @@ void LookAroundYouApp::setup()
 	mPerlin->setOctaves(1);
     for(int i=0; i<10; i++) {
         int n = Rand::randInt(0, fxnames.size());
-        SoundInstanceRef fx = audioDevice->getSoundInstance(fxnames[n], 1.0);
+        SoundInstanceRef fx = mAudioDevice->getSoundInstance(fxnames[n], 1.0);
         BoidRef boid = make_shared<Boid>(mPerlin, fx);
-        boids.push_back(boid);
+        mBoids.push_back(boid);
     }
     
 	
@@ -117,10 +116,11 @@ void LookAroundYouApp::update()
 	mTimer.start();
 	
     gl::color(Color::white());
-    for(int i=0; i<boids.size(); i++) {
-        boids[i]->update(deltaTime);
+    for(int i=0; i<mBoids.size(); i++) {
+        mBoids[i]->update(deltaTime);
     }
     
+    mAudioDevice->update();
 	mFrameRate = getAverageFps();
 }
 
@@ -134,8 +134,8 @@ void LookAroundYouApp::draw()
 	gl::setMatrices( mMayaCam.getCamera() );
 	
     
-    for(int i=0; i<boids.size(); i++) {
-        boids[i]->draw();
+    for(int i=0; i<mBoids.size(); i++) {
+        mBoids[i]->draw();
     }
 
     gl::drawCoordinateFrame( 6.0f );
@@ -145,7 +145,7 @@ void LookAroundYouApp::draw()
 	// Draw the interface
 	mParams.draw();
     
-    float pos = music->getPositionNorm();
+    float pos = music->getPlayheadNorm();
     Rectf bar(0, 0, app::getWindowWidth()*pos, 10);
     gl::drawSolidRect(bar);
 }

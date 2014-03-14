@@ -35,16 +35,18 @@ public:
 	void	setVolume(float vol);
 	float	getVolume() const;
 	
-	
+    
 	bool	isPlaying();
 	bool	isAudible() { return getAudibility() > 0.01; }
-	double			getPositionSec() { return getPositionMs()/1000.0; }
-	unsigned int	getPositionMs();
+	double			getPlayheadSec() { return getPlayheadMs()/1000.0; }
+	unsigned int	getPlayheadMs();
+    double			getPlayheadNorm() { return getPlayheadSec()/getLengthSec(); }
 	double			getLengthSec() { return getLengthMs()/1000.0; }
 	unsigned int	getLengthMs() const { return length; }
-	double			getPositionNorm() { return getPositionSec()/getLengthSec(); }
-
-	
+    
+	void        set3DFalloff(float min, float max);
+	void        set3DAttributes(ci::Vec3f pos, ci::Vec3f vel);
+    
 	float	getAudibility();
 	int		getLoopCount();
 	

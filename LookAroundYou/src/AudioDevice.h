@@ -34,9 +34,13 @@ public:
     int mNumChannels;
     
     string registerSound( ci::fs::path pathToSound,
-                         bool looping=false, bool asStream=false );
+                         bool looping=false,
+                         bool is3d=false,
+                         bool asStream=false );
 	string registerSound( ci::DataSourceRef dataSource,
-                         bool looping=false, bool asStream=false );
+                         bool looping=false,
+                         bool is3d=false,
+                         bool asStream=false );
     SoundInstanceRef getSoundInstance(std::string name,
                                       float volume );
     
