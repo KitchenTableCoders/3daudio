@@ -38,6 +38,7 @@ void AudioDevice::setup(string deviceName, int nChannels)
 
 void AudioDevice::setup(int deviceID, int nChannels)
 {
+    mNumChannels = nChannels;
   	if(deviceID >= 0 && deviceID <= deviceMap.size()-1)
 	{
 		mSystem->setDriver(deviceID);
@@ -58,8 +59,9 @@ void AudioDevice::setup(int deviceID, int nChannels)
     
     FMOD_RESULT result;
 	FMOD_INITFLAGS flags = FMOD_INIT_NORMAL;
-	result = mSystem->init( nChannels, flags, NULL );
+	result = mSystem->init( mNumChannels, flags, NULL );
 	
+    
 	// If the selected speaker mode isn't supported by this sound card, switch it back to stereo
 	if (result == FMOD_ERR_OUTPUT_CREATEBUFFER)
 	{
@@ -122,14 +124,7 @@ unsigned int AudioDevice::getNumChannelsPlaying()
 
 unsigned int AudioDevice::getNumRemainingChannels()
 {
-    int samplerate;
-    FMOD_SOUND_FORMAT format;
-    int numoutputchannels;
-    int maxinputchannels;
-    FMOD_DSP_RESAMPLER resamplemethod;
-    int bits;
-    mSystem->getSoftwareFormat(&samplerate, &format, &numoutputchannels, &maxinputchannels, &resamplemethod, &bits);
-    return numoutputchannels-getNumChannelsPlaying();
+    return mNumChannels-getNumChannelsPlaying();
 }
 
 SoundInstanceRef AudioDevice::getSoundInstance(string name, float volume )

@@ -31,6 +31,7 @@ public:
     
     char deviceName[256];
     FMOD_GUID guid;
+    int mNumChannels;
     
     string registerSound( ci::fs::path pathToSound,
                          bool looping=false, bool asStream=false );

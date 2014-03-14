@@ -11,7 +11,7 @@
 float Boid::range = 30;
 float Boid::radiusMultiplier = 1.0;
 
-Boid::Boid(Perlin* perlin)
+Boid::Boid(Perlin* perlin, SoundInstanceRef sound)
 {
     mBorn = app::getElapsedSeconds ();
     mColor.set(ColorModel::CM_HSV, Vec3f(Rand::randFloat(), 1.0, 1.0));
@@ -21,6 +21,9 @@ Boid::Boid(Perlin* perlin)
     mRadius = Rand::randFloat(5, 10);
     mSpeed = Rand::randFloat(0.05, 0.1);
     mPerlin = perlin;
+    
+    mSound = sound;
+    mSound->play();
 }
 
 void Boid::update(float deltaTime)

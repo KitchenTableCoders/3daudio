@@ -38,6 +38,7 @@ private:
     vector<BoidRef> boids;
     AudioDeviceRef audioDevice;
     SoundInstanceRef music;
+    vector<string> fxnames;
 };
 
 
@@ -66,6 +67,7 @@ void LookAroundYouApp::setup()
     AudioDevice::printDeviceMap();
     audioDevice = make_shared<AudioDevice>();
     audioDevice->setup(0);
+    console() << "Channels Available: " << audioDevice->getNumRemainingChannels();
     
     DataSourceRef data = loadAsset("music/Music For Airports - 1 1.mp3");
     string musicName = audioDevice->registerSound(data, true, true);
@@ -73,11 +75,23 @@ void LookAroundYouApp::setup()
     music->play();
     
     
+    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/blue.aif"), true));
+    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/fliup.aif"), true));
+    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/green.aif"), true));
+    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/howl.wav"), true));
+    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/orange.aif"), true));
+    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/red.aif"), true));
+    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/white.aif"), true));
+    fxnames.push_back(audioDevice->registerSound(loadAsset("fx/yellow.aif"), true));
+    
+    
     mPerlin = new Perlin();
     mPerlin->setSeed(clock());
 	mPerlin->setOctaves(1);
     for(int i=0; i<10; i++) {
-        BoidRef boid = make_shared<Boid>(mPerlin);
+        int n = Rand::randInt(0, fxnames.size());
+        SoundInstanceRef fx = audioDevice->getSoundInstance(fxnames[n], 1.0);
+        BoidRef boid = make_shared<Boid>(mPerlin, fx);
         boids.push_back(boid);
     }
     

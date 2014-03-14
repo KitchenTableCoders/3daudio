@@ -97,9 +97,9 @@
 			children = (
 				1FCDDF1A18D3454100836032 /* FMODCommon.cpp */,
 				1FCDDF1D18D3465200836032 /* Boid.cpp */,
-				CC884A97CF02405D985CBBE3 /* LookAroundYouApp.cpp */,
 				1F79787F18D35DD3006B2A4A /* AudioDevice.cpp */,
 				1F79788218D37226006B2A4A /* SoundInstance.cpp */,
+				CC884A97CF02405D985CBBE3 /* LookAroundYouApp.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
