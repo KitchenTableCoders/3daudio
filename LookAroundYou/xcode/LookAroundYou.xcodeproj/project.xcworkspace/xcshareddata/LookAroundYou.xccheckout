@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5E9BA4EF-1DE5-42D5-AFBB-2D9067AB29F5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LookAroundYou</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2AA68C5C-C239-4123-A324-92DD7FDBA9AA</key>
+		<string>https://github.com/KitchenTableCoders/cinder-fmod.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>LookAroundYou/xcode/LookAroundYou.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2AA68C5C-C239-4123-A324-92DD7FDBA9AA</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/KitchenTableCoders/cinder-fmod.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2AA68C5C-C239-4123-A324-92DD7FDBA9AA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2AA68C5C-C239-4123-A324-92DD7FDBA9AA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>3daudio</string>
+		</dict>
+	</array>
+</dict>
+</plist>
