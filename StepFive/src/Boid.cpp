@@ -51,31 +51,55 @@ void Boid::update(float deltaTime)
     FMOD_VECTOR _vel = toFMOD(velocity);
     mChannel->set3DAttributes(&_pos, &_vel);
     mChannel->set3DMinMaxDistance(0, mRadius);
-    
+    mChannel->getWaveData(waveData, 512, 0);
     mPosLast = mPos;
 }
 
 void Boid::draw()
 {
-    float audibility=0;
-	mChannel->getAudibility(&audibility);
-
-
     gl::pushMatrices();
     gl::translate(mPos);
     gl::color(mColor);
-    drawWidget(audibility);
+    drawAudibility();
     gl::color(mColor.r, mColor.g, mColor.b, 0.3);
-    drawWidget(mRadius);
+    drawWaveWidget();
     gl::popMatrices();
 }
 
-void Boid::drawWidget(float r)
+
+void Boid::drawAudibility()
 {
-    gl::drawStrokedCircle(Vec2f(0, 0), r, 30);
+    float a=0;
+	mChannel->getAudibility(&a);
+    gl::drawStrokedCircle(Vec2f(0, 0), a, 30);
     gl::rotate(Vec3f(0, 90, 0));
-    gl::drawStrokedCircle(Vec2f(0, 0), r, 30);
+    gl::drawStrokedCircle(Vec2f(0, 0), a, 30);
     gl::rotate(Vec3f(90, 0, 0));
-    gl::drawStrokedCircle(Vec2f(0, 0), r, 30);
+    gl::drawStrokedCircle(Vec2f(0, 0), a, 30);
+}
+
+void Boid::drawWaveWidget()
+{
+    drawWaveCircle();
+    gl::rotate(Vec3f(0, 90, 0));
+    drawWaveCircle();
+    gl::rotate(Vec3f(90, 0, 0));
+    drawWaveCircle();
+}
+
+void Boid::drawWaveCircle()
+{
+    vector<Vec3f> vertices;
+    float inc = M_PI/90.0;
+    for(float i=0; i < M_PI*2.0; i+=inc) {
+        int w = lmap<float>(i, 0, M_PI*2, 0, 512);
+        float wave =waveData[w]*2.0;
+        float x = wave + cos(i) * mRadius;
+        float y = wave + sin(i) * mRadius;
+        vertices.push_back( Vec3f(x, y, 0) );
+    }
+    glEnableClientState( GL_VERTEX_ARRAY );
+    glVertexPointer( 3, GL_FLOAT, 0, &vertices[0] );
+    glDrawArrays( GL_LINE_STRIP, 0, vertices.size() );
 }
 

@@ -25,7 +25,9 @@ public:
     void draw();
     
 protected:
-    void drawWidget(float r);
+    void drawAudibility();
+    void drawWaveWidget();
+    void drawWaveCircle();
     Color8u mColor;
     Vec3f mPos;
     Vec3f mPosLast;
@@ -33,7 +35,7 @@ protected:
     Perlin* mPerlin;
     Vec3f mPerlinIdx;
     FMOD::Channel* mChannel;
-    
+    float waveData[512];
     FMOD::DSP* dspecho;
 };
 
