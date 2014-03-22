@@ -23,7 +23,7 @@ public:
     
     static float range;
     static float radiusMultiplier;
-    
+    static float speedMultiplier;
 protected:
     
     SoundInstanceRef mSound;

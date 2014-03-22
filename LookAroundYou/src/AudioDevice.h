@@ -24,15 +24,7 @@ public:
     
     unsigned int getNumChannelsPlaying();
     unsigned int getNumRemainingChannels();
-    
-    FMOD::System* mSystem;
-    FMOD::ChannelGroup* mMasterChannelGroup;
-    std::map<std::string,FMOD::Sound*> mSounds;
-    
-    char deviceName[256];
-    FMOD_GUID guid;
-    int mNumChannels;
-    
+
     string registerSound( ci::fs::path pathToSound,
                          bool looping=false,
                          bool is3d=false,
@@ -44,6 +36,23 @@ public:
     SoundInstanceRef getSoundInstance(std::string name,
                                       float volume );
     
+    void setAmbientReverb(FMOD_REVERB_PROPERTIES prop1);
+    void setVolume(float vol);
+	float getVolume();
+    
+    
+    
+    FMOD::System* mSystem;
+    FMOD::ChannelGroup* mMasterChannelGroup;
+    std::map<std::string,FMOD::Sound*> mSounds;
+    
+    char deviceName[256];
+    FMOD_GUID guid;
+    int mNumChannels;
+    
+    
+    
+    // static
     static map<string,int> deviceMap;
 	static map<string,int> getDeviceMap();
     static void printDeviceMap();

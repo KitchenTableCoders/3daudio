@@ -154,7 +154,23 @@ void AudioDevice::update()
 }
 
 
+// FMOD_PRESET_OFF, FMOD_PRESET_UNDERWATER, FMOD_PRESET_STONEROOM, FMOD_PRESET_ARENA, etc.
+void AudioDevice::setAmbientReverb(FMOD_REVERB_PROPERTIES prop1)
+{
+	FMODErrorCheck(mSystem->setReverbAmbientProperties(&prop1));
+}
 
+void AudioDevice::setVolume(float vol)
+{
+	FMODErrorCheck(mMasterChannelGroup->setVolume(vol));
+}
+
+float AudioDevice::getVolume()
+{
+	float vol;
+	FMODErrorCheck(mMasterChannelGroup->getVolume(&vol));
+	return vol;
+}
 
 
 

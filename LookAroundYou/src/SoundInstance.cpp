@@ -32,7 +32,7 @@ SoundInstance::SoundInstance(AudioDevice* device, FMOD::Sound* sound, float volu
 	FMODErrorCheck(mChannel->setDelay(FMOD_DELAYTYPE_END_MS, 1000, 1000));
 #endif
     
-	//setVolume( volume );
+	setVolume( volume );
 	
 	FMODErrorCheck(sound->getLength(&length, FMOD_TIMEUNIT_MS));
 	FMODErrorCheck(sound->getFormat(&type, &format, &nchannels, &bits));

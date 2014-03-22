@@ -10,6 +10,8 @@
 
 float Boid::range = 30;
 float Boid::radiusMultiplier = 1.0;
+float Boid::speedMultiplier = 1.0;
+
 
 Boid::Boid(Perlin* perlin, SoundInstanceRef sound)
 {
@@ -28,13 +30,12 @@ Boid::Boid(Perlin* perlin, SoundInstanceRef sound)
 
 void Boid::update(float deltaTime)
 {
-    mPerlinIdx.x += (mSpeed / range);
+    mPerlinIdx.x += (mSpeed / range) * speedMultiplier;
     mPos = mPerlin->dfBm(mPerlinIdx) * Boid::range;
     
     if(mSound->is3d()) {
         
         Vec3f velocity = (mPos - mPosLast)/deltaTime;
-        app::console() << mPos << endl;
         mSound->set3DAttributes(mPos, velocity);
         mSound->set3DFalloff(0, mRadius*Boid::radiusMultiplier);
         mPosLast = mPos;

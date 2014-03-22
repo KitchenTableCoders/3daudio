@@ -26,6 +26,7 @@ public:
 	void keyDown( KeyEvent event ) override;
 	void keyUp( KeyEvent event ) override;
 	void shutdown() override;
+
     
 private:
 	params::InterfaceGl mParams;
@@ -34,6 +35,7 @@ private:
 	MayaCamUI mMayaCam;
 	Vec2f mMousePos;
     
+    float mVolume;
     Perlin* mPerlin;
     vector<BoidRef> mBoids;
     AudioDeviceRef mAudioDevice;
@@ -57,16 +59,25 @@ void LookAroundYouApp::setup()
 {
 	Rand::randomize();
 	
+    mVolume = 1.0;
+    
+    // Setup GUI
 	getWindow()->setTitle("MPCDigital App");
 	mParams = params::InterfaceGl( "Settings", Vec2i( 300, 200 ) );
 	mParams.addParam( "Framerate", &mFrameRate, "", true );
-	
-    mParams.addParam("Radius", &Boid::radiusMultiplier, "min=0.5 max=3.0 step=0.1");
-    mParams.addParam("Range", &Boid::range, "min=10.0 max=100 step=1.0");
+    mParams.addSeparator();
+    mParams.addParam("Speed", &Boid::speedMultiplier, "min=0.5 max=5.0 step=0.01");
+    mParams.addParam("Radius", &Boid::radiusMultiplier, "min=0.5 max=5.0 step=0.01");
+    mParams.addParam("Range", &Boid::range, "min=10.0 max=100 step=0.1");
+    mParams.addSeparator();
+    mParams.addParam("Master Volume", &mVolume, "min=0 max=1.0 step=0.01");
     
+    
+    // Setup Audio
     AudioDevice::printDeviceMap();
     mAudioDevice = make_shared<AudioDevice>();
     mAudioDevice->setup(0);
+    mAudioDevice->setAmbientReverb(FMOD_PRESET_UNDERWATER);
     console() << "Channels Available: " << mAudioDevice->getNumRemainingChannels() << endl;
     
     DataSourceRef data = loadAsset("music/Music For Airports - 1 1.mp3");
@@ -83,10 +94,12 @@ void LookAroundYouApp::setup()
     fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/white.aif"), true, true));
     fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/yellow.aif"), true, true));
     
-    
+    // Setup noise generator to drive Boid motion
     mPerlin = new Perlin();
     mPerlin->setSeed(clock());
 	mPerlin->setOctaves(1);
+    
+    // Construct Boids
     for(int i=0; i<10; i++) {
         int n = Rand::randInt(0, fxnames.size());
         SoundInstanceRef fx = mAudioDevice->getSoundInstance(fxnames[n], 1.0);
@@ -100,6 +113,7 @@ void LookAroundYouApp::setup()
 	gl::enableDepthWrite();
     gl::enableAlphaBlending();
 }
+
 
 void LookAroundYouApp::resize()
 {
@@ -120,6 +134,7 @@ void LookAroundYouApp::update()
         mBoids[i]->update(deltaTime);
     }
     
+    mAudioDevice->setVolume(mVolume);
     mAudioDevice->update();
 	mFrameRate = getAverageFps();
 }
@@ -168,7 +183,8 @@ void LookAroundYouApp::mouseDrag( MouseEvent event )
 	// Added/hacked support for international mac laptop keyboards.
 	bool middle = event.isMiddleDown() || ( event.isMetaDown() && event.isLeftDown() );
 	bool right = event.isRightDown() || ( event.isControlDown() && event.isLeftDown() );
-	mMayaCam.mouseDrag( event.getPos(), event.isLeftDown() && !middle && !right, middle, right );}
+	mMayaCam.mouseDrag( event.getPos(), event.isLeftDown() && !middle && !right, middle, right );
+}
 
 void LookAroundYouApp::mouseUp( MouseEvent event )
 {
