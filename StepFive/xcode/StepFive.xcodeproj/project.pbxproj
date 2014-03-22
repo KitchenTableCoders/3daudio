@@ -15,11 +15,11 @@
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		2086733CD712487C961A6A4E /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4EA0C988B1B34171A77FE016 /* libfmodex.dylib */; };
-		42562315DAAC443CA1196439 /* Step5_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 8E46ADC3377B4DCBB0218BD9 /* Step5_Prefix.pch */; };
-		877A9E4E19524DDC84650D4F /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6F5AC7BA669D48D8B6D7D6E5 /* CinderApp.icns */; };
-		A21A9FC6E1E943289F80F479 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB8E07638FD4303A023B533 /* Resources.h */; };
-		2449AC8AC9614D9F9ABA8323 /* Step5App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC36949527784462ABC249C1 /* Step5App.cpp */; };
+		66796B1FB3C540F0ABF585DB /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C58515E4F15E41EAA6CD7146 /* libfmodex.dylib */; };
+		292B9FC38A0440C487463926 /* StepFive_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A08220FCB640468D9B5C1C51 /* StepFive_Prefix.pch */; };
+		15BE5727E0484351B4C4A1AE /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 60F003A775814564981BB12D /* CinderApp.icns */; };
+		92B2D7B857B9418DA4A03329 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 3204375CAE434E45B66795DC /* Resources.h */; };
+		CC6B18AEC4AF4CF09D0DFB7D /* StepFiveApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 057B7A03C9684FC38CAEFB96 /* StepFiveApp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,13 +33,13 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
-		8D1107320486CEB800E47090 /* Step5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Step5.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC36949527784462ABC249C1 /* Step5App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../src/Step5App.cpp; sourceTree = "<group>"; name = Step5App.cpp; };
-		1BB8E07638FD4303A023B533 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../include/Resources.h; sourceTree = "<group>"; name = Resources.h; };
-		6F5AC7BA669D48D8B6D7D6E5 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; name = CinderApp.icns; };
-		715A6DB6C5F94A6E89B2932A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
-		8E46ADC3377B4DCBB0218BD9 /* Step5_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = Step5_Prefix.pch; sourceTree = "<group>"; name = Step5_Prefix.pch; };
-		4EA0C988B1B34171A77FE016 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = ../../../../cinder_0.8.5_mac/blocks/FMOD/lib/macosx/libfmodex.dylib; sourceTree = "<group>"; name = libfmodex.dylib; };
+		8D1107320486CEB800E47090 /* StepFive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepFive.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		057B7A03C9684FC38CAEFB96 /* StepFiveApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../src/StepFiveApp.cpp; sourceTree = "<group>"; name = StepFiveApp.cpp; };
+		3204375CAE434E45B66795DC /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../include/Resources.h; sourceTree = "<group>"; name = Resources.h; };
+		60F003A775814564981BB12D /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; name = CinderApp.icns; };
+		83274C436F11411086F13270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
+		A08220FCB640468D9B5C1C51 /* StepFive_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = StepFive_Prefix.pch; sourceTree = "<group>"; name = StepFive_Prefix.pch; };
+		C58515E4F15E41EAA6CD7146 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = ../../../../cinder_0.8.5_mac/blocks/FMOD/lib/macosx/libfmodex.dylib; sourceTree = "<group>"; name = libfmodex.dylib; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				FC36949527784462ABC249C1 /* Step5App.cpp */,
+				057B7A03C9684FC38CAEFB96 /* StepFiveApp.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -96,12 +96,12 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* Step5.app */,
+				8D1107320486CEB800E47090 /* StepFive.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* Step5 */ = {
+		29B97314FDCFA39411CA2CEA /* StepFive */ = {
 			isa = PBXGroup;
 			children = (
 				01B97315FEAEA392516A2CEA /* Blocks */,
@@ -111,29 +111,29 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
-			name = Step5;
+			name = StepFive;
 			sourceTree = "<group>";
 		};
-		4F98914085D149DBA8D8F5F8 /* macosx */ = {
+		C9E3CC36843245CA8BB634D7 /* macosx */ = {
 			isa = PBXGroup;
 			children = (
-				4EA0C988B1B34171A77FE016 /* libfmodex.dylib */,
+				C58515E4F15E41EAA6CD7146 /* libfmodex.dylib */,
 			);
 			name = macosx;
 			sourceTree = "<group>";
 		};
-		64D835BD37CE4DC9B6138607 /* lib */ = {
+		8060C8A4ABD1418AB872179E /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				4F98914085D149DBA8D8F5F8 /* macosx */,
+				C9E3CC36843245CA8BB634D7 /* macosx */,
 			);
 			name = lib;
 			sourceTree = "<group>";
 		};
-		338C15F77B8D456F94D79A91 /* FMOD */ = {
+		068238EE61E545D5857DD481 /* FMOD */ = {
 			isa = PBXGroup;
 			children = (
-				64D835BD37CE4DC9B6138607 /* lib */,
+				8060C8A4ABD1418AB872179E /* lib */,
 			);
 			name = FMOD;
 			sourceTree = "<group>";
@@ -141,7 +141,7 @@
 		01B97315FEAEA392516A2CEA /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
-				338C15F77B8D456F94D79A91 /* FMOD */,
+				068238EE61E545D5857DD481 /* FMOD */,
 			);
 			name = Blocks;
 			sourceTree = "<group>";
@@ -149,8 +149,8 @@
 		29B97315FDCFA39411CA2CEA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				1BB8E07638FD4303A023B533 /* Resources.h */,
-				8E46ADC3377B4DCBB0218BD9 /* Step5_Prefix.pch */,
+				3204375CAE434E45B66795DC /* Resources.h */,
+				A08220FCB640468D9B5C1C51 /* StepFive_Prefix.pch */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -158,8 +158,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6F5AC7BA669D48D8B6D7D6E5 /* CinderApp.icns */,
-				715A6DB6C5F94A6E89B2932A /* Info.plist */,
+				60F003A775814564981BB12D /* CinderApp.icns */,
+				83274C436F11411086F13270 /* Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -176,23 +176,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* Step5 */ = {
+		8D1107260486CEB800E47090 /* StepFive */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Step5" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "StepFive" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				06BA178FD2154FD7BB4DD146 /* CopyFiles */,
+				A7E2D702B7744FCE98D5FD03 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Step5;
+			name = StepFive;
 			productInstallPath = "$(HOME)/Applications";
-			productName = Step5;
-			productReference = 8D1107320486CEB800E47090 /* Step5.app */;
+			productName = StepFive;
+			productReference = 8D1107320486CEB800E47090 /* StepFive.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -200,7 +200,7 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Step5" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "StepFive" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -210,11 +210,11 @@
 				French,
 				German,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA /* Step5 */;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* StepFive */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* Step5 */,
+				8D1107260486CEB800E47090 /* StepFive */,
 			);
 		};
 /* End PBXProject section */
@@ -224,7 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				877A9E4E19524DDC84650D4F /* CinderApp.icns in Resources */,
+				15BE5727E0484351B4C4A1AE /* CinderApp.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2449AC8AC9614D9F9ABA8323 /* Step5App.cpp in Sources */,
+				CC6B18AEC4AF4CF09D0DFB7D /* StepFiveApp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +256,7 @@
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Step5_Prefix.pch;
+				GCC_PREFIX_HEADER = StepFive_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -264,7 +264,7 @@
 					"\"$(CINDER_PATH)/lib/libcinder_d.a\"",
 					../../../../cinder_0.8.5_mac/blocks/FMOD/lib/macosx/libfmodex.dylib,
 				);
-				PRODUCT_NAME = Step5;
+				PRODUCT_NAME = StepFive;
 				WRAPPER_EXTENSION = app;
 				SYMROOT = ./build;
 			};
@@ -281,7 +281,7 @@
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Step5_Prefix.pch;
+				GCC_PREFIX_HEADER = StepFive_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -289,7 +289,7 @@
 					"\"$(CINDER_PATH)/lib/libcinder.a\"",
 					../../../../cinder_0.8.5_mac/blocks/FMOD/lib/macosx/libfmodex.dylib,
 				);
-				PRODUCT_NAME = Step5;
+				PRODUCT_NAME = StepFive;
 				STRIP_INSTALLED_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 				SYMROOT = ./build;
@@ -339,7 +339,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Step5" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "StepFive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
@@ -348,7 +348,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Step5" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "StepFive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
@@ -358,13 +358,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-		06BA178FD2154FD7BB4DD146 /* Copy Files */ = {
+		A7E2D702B7744FCE98D5FD03 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				2086733CD712487C961A6A4E /* libfmodex.dylib in CopyFiles */,
+				66796B1FB3C540F0ABF585DB /* libfmodex.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
