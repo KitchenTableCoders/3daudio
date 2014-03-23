@@ -71,6 +71,7 @@ void StepFiveApp::setup()
     FMOD_VECTOR vel = {0, 0, 0};
     FMODErrorCheck(mSystem->set3DListenerAttributes(0, &listenerpos, &vel, &forward, &up));
     
+    
     vector<DataSourceRef> sources;
     sources.push_back(loadResource(RES_SOUND_01));
     sources.push_back(loadResource(RES_SOUND_02));
@@ -83,7 +84,7 @@ void StepFiveApp::setup()
     
     for(auto& source : sources)
     {
-        ci::fs::path relativePath = source->getFilePath();
+        fs::path relativePath = source->getFilePath();
         if( relativePath.empty() )
             relativePath = ci::fs::path( source->getFilePathHint() );
         
@@ -95,6 +96,8 @@ void StepFiveApp::setup()
         FMOD::Channel* channel;
         mSystem->playSound( FMOD_CHANNEL_FREE, sound, true, &channel );
         
+        
+        // Boid* boid = new Boid(mPerlin, channel);
         BoidRef boid = make_shared<Boid>(mPerlin, channel);
         mBoids.push_back(boid);
     }

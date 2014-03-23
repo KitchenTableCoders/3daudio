@@ -20,7 +20,7 @@ Boid::Boid(Perlin* perlin)
 
 void Boid::update(float deltaTime)
 {
-    mPerlinIdx.x += 0.01;
+    mPerlinIdx.x += deltaTime * 0.5;
     mPos = mPerlin->dfBm(mPerlinIdx) * Boid::range;
 }
 

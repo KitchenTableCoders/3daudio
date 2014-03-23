@@ -27,12 +27,14 @@ Boid::Boid(Perlin* perlin, FMOD::Channel* channel)
     }
     
     FMODErrorCheck(mChannel->setDelay(FMOD_DELAYTYPE_END_MS, 1000, 1000));
+    
     FMOD::System* system;
     mChannel->getSystemObject(&system);
+    FMODErrorCheck(system->createDSPByType(FMOD_DSP_TYPE_ECHO, &dspecho));
     
-    system->createDSPByType(FMOD_DSP_TYPE_ECHO, &dspecho);
     FMODErrorCheck(mChannel->addDSP(dspecho, 0));
     FMODErrorCheck(dspecho->setParameter(FMOD_DSP_ECHO_WETMIX, 1.0));
+    FMODErrorCheck(dspecho->setParameter(FMOD_DSP_ECHO_DELAY, 2000));
 }
 
 Boid::~Boid()
@@ -61,7 +63,7 @@ void Boid::draw()
     gl::translate(mPos);
     gl::color(mColor);
     drawAudibility();
-    gl::color(mColor.r, mColor.g, mColor.b, 0.3);
+    gl::color(mColor.r, mColor.g, mColor.b, 1.0);
     drawWaveWidget();
     gl::popMatrices();
 }

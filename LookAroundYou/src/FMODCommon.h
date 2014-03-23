@@ -16,3 +16,5 @@ using namespace std;
 
 void FMODErrorCheck(FMOD_RESULT result);
 FMOD_VECTOR toFMOD(const cinder::Vec3f& vec);
+string FMODSpeakerModeDescription(FMOD_SPEAKERMODE mode);
+int FMODGetNumSpeakers(FMOD_SPEAKERMODE mode);

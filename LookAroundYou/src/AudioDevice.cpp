@@ -49,6 +49,8 @@ void AudioDevice::setup(int deviceID, int nChannels)
 		FMOD_SPEAKERMODE speakerMode;
 		FMOD_CAPS caps; // capabilities
 		FMODErrorCheck(mSystem->getDriverCaps(deviceID, &caps, &controlpaneloutputrate, &speakerMode));
+        cout << FMODSpeakerModeDescription(speakerMode) << endl;
+        cout << "Num speakers: " << FMODGetNumSpeakers(speakerMode) << endl;
 		FMODErrorCheck(mSystem->setSpeakerMode(speakerMode));
 	}
 	else

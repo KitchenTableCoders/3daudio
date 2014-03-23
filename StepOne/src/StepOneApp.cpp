@@ -2,7 +2,6 @@
 #include "cinder/gl/gl.h"
 #include "fmod.hpp"
 #include "fmod_errors.h"
-#include "fmod_dsp.h"
 
 
 using namespace ci;
@@ -14,7 +13,7 @@ void FMODErrorCheck(FMOD_RESULT result)
 {
 	if (result != FMOD_OK) {
 		cerr << "[FMOD] " << FMOD_ErrorString(result) << endl;
-		exit(-1);
+		exit(-1); // NOT FOR PRODUCTION
 	}
 }
 
@@ -54,7 +53,7 @@ class StepOneApp : public AppNative {
     
     FMOD::System* mSystem;
     FMOD::Sound* mSound;
-    FMOD::Channel* mChannel;
+    
 };
 
 void StepOneApp::setup()
@@ -63,7 +62,8 @@ void StepOneApp::setup()
     
     // 1. Setup
     // Create an FMOD::System -- this is totally abstract at this point. Just an empty container.
-    FMODErrorCheck(FMOD::System_Create( &mSystem ));
+    FMOD_RESULT result = FMOD::System_Create( &mSystem );
+    FMODErrorCheck(result);
     
     // Now we tell FMOD which driver the system should use.
     FMODErrorCheck(mSystem->setDriver(0));
@@ -74,20 +74,21 @@ void StepOneApp::setup()
     
     // 2. Load a sound
     string path = getAssetPath("orch-hit.wav").string();
-    FMODErrorCheck( mSystem->createSound( path.c_str(), FMOD_SOFTWARE, NULL, &mSound) );
-    
-    // 3. Make an "instance" of the sound known as a "FMOD::Channel"
-    // Hint: Try moving this into mouseDown
-    // Question: What happens to mChannel?
-    FMODErrorCheck( mSystem->playSound( FMOD_CHANNEL_FREE, mSound, true, &mChannel ) );
-
+    FMODErrorCheck( mSystem->createSound( path.c_str(), FMOD_SOFTWARE | FMOD_LOOP_OFF, NULL, &mSound) );
 }
 
 void StepOneApp::mouseDown( MouseEvent event )
 {
-    if(mChannel->setPaused(false)!=FMOD_OK) {
-        console() << "Playing" << endl;
-    }
+    // 3. Make an "instance" of the sound known as a "FMOD::Channel"
+    // Hint: Try moving this into mouseDown
+    // Question: What happens to mChannel?
+    FMOD::Channel* mChannel;
+    FMODErrorCheck( mSystem->playSound( FMOD_CHANNEL_FREE, mSound, false, &mChannel ) );
+    
+
+//    if(mChannel->setPaused(false)!=FMOD_OK) {
+//        console() << "Playing" << endl;
+//    }
 }
 
 void StepOneApp::update()

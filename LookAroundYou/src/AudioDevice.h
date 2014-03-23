@@ -41,7 +41,7 @@ public:
 	float getVolume();
     
     
-    
+   
     FMOD::System* mSystem;
     FMOD::ChannelGroup* mMasterChannelGroup;
     std::map<std::string,FMOD::Sound*> mSounds;

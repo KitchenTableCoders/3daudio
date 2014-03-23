@@ -9,7 +9,7 @@ using namespace ci::app;
 using namespace std;
 
 // In this example
-// 1. Loading streming sounds
+// 1. Loading streaming sounds
 // 2. Volume control
 // 3. Channel groups
 // 4. getCurrentSound at exit (perhaps bad example...)
@@ -33,7 +33,7 @@ class StepThreeApp : public AppNative {
     float mMusicVolume;
     float mFXVoume;
     float mMasterVolume;
-    bool bReverb;
+    bool bReverb = false;
 };
 
 void StepThreeApp::setup()
@@ -43,7 +43,6 @@ void StepThreeApp::setup()
     FMODErrorCheck(mSystem->setDriver(0));
 	FMOD_INITFLAGS flags = FMOD_INIT_NORMAL; // right-click, Go To Definition
 	FMODErrorCheck(mSystem->init( 32, flags, NULL ));
-    bReverb = false;
 
     vector<fs::path> paths;
     paths.push_back( getAssetPath("gong-loud-hit.mp3") );
@@ -52,6 +51,7 @@ void StepThreeApp::setup()
     
     mFXVoume = 0.5;
     FMODErrorCheck(mSystem->createChannelGroup(NULL, &mFXGroup));
+    
     for(auto& path: paths) {
         FMOD::Sound* sound;
         mSystem->createSound( path.string().c_str(), FMOD_SOFTWARE, NULL, &sound );
@@ -74,7 +74,6 @@ void StepThreeApp::setup()
     
     mMasterVolume = 1.0;
     FMODErrorCheck(mSystem->getMasterChannelGroup(&mMasterChannelGroup));
-    
 }
 
 void StepThreeApp::mouseDown( MouseEvent event )
@@ -90,7 +89,6 @@ void StepThreeApp::mouseDown( MouseEvent event )
 
 void StepThreeApp::keyUp( KeyEvent event )
 {
-    
     if(event.getChar()=='M' && mMusicVolume < 1) {
         mMusicVolume += 0.1;
     }

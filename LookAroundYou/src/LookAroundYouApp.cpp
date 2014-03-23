@@ -83,7 +83,7 @@ void LookAroundYouApp::setup()
     DataSourceRef data = loadAsset("music/Music For Airports - 1 1.mp3");
     string musicName = mAudioDevice->registerSound(data, true, false, true);
     music = mAudioDevice->getSoundInstance(musicName, 1.0);
-    music->play();
+    music->pause();
     
     fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/blue.aif"), true, true));
     fxnames.push_back(mAudioDevice->registerSound(loadAsset("fx/fliup.aif"), true, true));

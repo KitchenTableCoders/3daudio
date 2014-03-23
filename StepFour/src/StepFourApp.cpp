@@ -35,7 +35,7 @@ void StepFourApp::prepareSettings( AppBasic::Settings *settings )
 {
 	settings->setFrameRate(60);
 	settings->setWindowSize(1024, 768);
-	//	settings->enableHighDensityDisplay();
+	//settings->enableHighDensityDisplay();
 	//	settings->setAlwaysOnTop();
 	//	settings->setBorderless();
 	//	settings->setWindowPos( 0, 0 );

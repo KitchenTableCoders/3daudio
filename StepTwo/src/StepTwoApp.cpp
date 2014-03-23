@@ -60,8 +60,6 @@ void StepTwoApp::mouseDown( MouseEvent event )
     }
 
     
-    
-    
     FMOD::Sound* sound = mSounds[Rand::randInt(mSounds.size())];
     
     // Channels inherit the modes of sounds.
